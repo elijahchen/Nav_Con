@@ -1,18 +1,13 @@
 package turntotech.org.navigationcontroller.fragments;
 
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import turntotech.org.navigationcontroller.R;
@@ -52,10 +47,16 @@ public class ProductFragment extends ListFragment {
         String[] products = null;
 
         if(companyPosition==0){
-            products = new String[] { "iPhone", "iPAD" };
+            products = new String[] { "iPhone", "iPad", "iPod" };
         }
         if(companyPosition==1){
-            products = new String[] { "Galaxy Note", "Galaxy Tab" };
+            products = new String[] { "Galaxy Note", "Galaxy Tab", "Galaxy S" };
+        }
+        if(companyPosition==2){
+            products = new String[] { "Redmi Note", "Redmi Prime", "Mi Pad" };
+        }
+        if(companyPosition==3){
+            products = new String[] { "Mate", "Nexus", "Honor" };
         }
 
 
