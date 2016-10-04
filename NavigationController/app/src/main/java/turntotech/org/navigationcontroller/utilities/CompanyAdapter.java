@@ -2,6 +2,7 @@ package turntotech.org.navigationcontroller.utilities;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import turntotech.org.navigationcontroller.R;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by elijah on 9/23/2016.
@@ -38,7 +41,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyH
     }
 
     @Override
-    // Populate data into the item through the holder
+    // Populate data into the item through` the holder
     public void onBindViewHolder(CompanyHolder holder, int position) {
         // Get data model based on position
         Company thisCompany = companyArrayList.get(position);
@@ -46,6 +49,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyH
         Drawable drawThis = holder.companyLogo.getContext().getResources().getDrawable(thisCompany.getCompanyLogo());
         holder.companyLogo.setImageDrawable(drawThis);
         holder.companyName.setText(thisCompany.getCompanyName());
+        Log.d(TAG,"onBindViewHolder: " + position);
 
     }
 

@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         Company[] CompanyArray = {
                 new Company(R.mipmap.apple_logo, "Apple"),
-                new Company(R.mipmap.apple_logo, "Samsung")
+                new Company(R.mipmap.apple_logo, "Samsung"),
+                new Company(R.mipmap.apple_logo, "Huawei"),
+                new Company(R.mipmap.apple_logo, "HTC")
         };
         companyArrayList = new ArrayList<>(Arrays.asList(CompanyArray));
 
