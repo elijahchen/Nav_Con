@@ -2,7 +2,6 @@ package turntotech.org.navigationcontroller;
 
 //import android.support.v4.app.FragmentTransaction;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import turntotech.org.navigationcontroller.fragments.CompanyFragment;
-import turntotech.org.navigationcontroller.utility.Company;
-import turntotech.org.navigationcontroller.utility.CompanyAdapter;
+import turntotech.org.navigationcontroller.utilities.Company;
+import turntotech.org.navigationcontroller.utilities.CompanyAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
