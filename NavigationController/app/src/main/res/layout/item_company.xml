@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/row_layout"
     android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/company_logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        tools:src="@mipmap/apple_logo"
-        android:id="@+id/company_logo" />
+        tools:src="@mipmap/apple_logo" />
 
     <TextView
+        android:id="@+id/company_name"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        tools:text="Company"
         android:gravity="center"
         android:textSize="20sp"
-        android:id="@+id/company_name"/>
+        tools:text="Company" />
 
 </LinearLayout>
