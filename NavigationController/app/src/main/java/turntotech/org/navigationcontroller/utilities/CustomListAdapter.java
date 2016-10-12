@@ -38,11 +38,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         TextView textView = (TextView) rowView.findViewById(R.id.company_name);
         textView.setText(values[position]);
         Drawable draw = context.getResources().getDrawable(icons[position]);
-//        Bitmap bitmap = ((BitmapDrawable) draw).getBitmap();
-//        int h = bitmap.getHeight();
-//        int w = bitmap.getWidth();
-//        Drawable newDraw = new BitmapDrawable(context.getResources(),
-//                Bitmap.createScaledBitmap(bitmap, 40 * w / h, 40, true));
 
         textView.setCompoundDrawablesWithIntrinsicBounds(draw, null, null, null);
 

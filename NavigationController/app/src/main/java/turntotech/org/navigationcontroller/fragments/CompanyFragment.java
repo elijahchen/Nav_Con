@@ -39,9 +39,6 @@ public class CompanyFragment extends ListFragment {
         actionBar.setDisplayShowCustomEnabled(true);
         title.setText("Watch List");
 
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, companies);
-//        setListAdapter(arrayAdapter);
-
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), companies, logo);
         setListAdapter(customListAdapter);
 
@@ -50,14 +47,10 @@ public class CompanyFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        // TODO Auto-generated method stub
         super.onListItemClick(l, v, position, id);
-
-//        TextView title = (TextView) v.findViewById(android.R.id.text1);
 
         Bundle bundle = new Bundle();
         bundle.putInt("CompanyIndex", position);
-//        bundle.putString("CompanyTitle", title.getText().toString());
         bundle.putString("CompanyTitle", companies[position]);
 
         productFragment.setArguments(bundle);
@@ -66,7 +59,6 @@ public class CompanyFragment extends ListFragment {
         transaction.addToBackStack(null);
         transaction.replace(R.id.fragment_container, productFragment);
         transaction.commit();
-
 
     }
 

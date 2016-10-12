@@ -62,9 +62,6 @@ public class ProductFragment extends ListFragment {
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
 
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, products);
-//        setListAdapter(arrayAdapter);
-
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), products, logo);
         setListAdapter(customListAdapter);
 
