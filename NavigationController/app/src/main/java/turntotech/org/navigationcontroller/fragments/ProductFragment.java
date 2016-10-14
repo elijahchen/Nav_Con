@@ -26,7 +26,6 @@ public class ProductFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         View mCustomView = inflater.inflate(R.layout.custom_actionbar, null);
         TextView title = (TextView) mCustomView.findViewById(R.id.title_text);
         mCustomView.findViewById(R.id.back_text).setOnClickListener(new View.OnClickListener() {
@@ -61,6 +60,8 @@ public class ProductFragment extends ListFragment {
             products = new String[]{"Honor", "MatePad", "Huawei Watch"};
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
+
+        //TODO: put Bundle to pass onto WebFragment
 
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), products, logo);
         setListAdapter(customListAdapter);
