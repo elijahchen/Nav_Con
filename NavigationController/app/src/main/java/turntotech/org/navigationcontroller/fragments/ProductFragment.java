@@ -1,5 +1,6 @@
 package turntotech.org.navigationcontroller.fragments;
 
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import turntotech.org.navigationcontroller.R;
@@ -15,8 +17,10 @@ import turntotech.org.navigationcontroller.utilities.CustomListAdapter;
 
 public class ProductFragment extends ListFragment {
 
+    WebFragment webFragment;
+
     public ProductFragment() {
-        // Required empty public constructor
+        webFragment = new WebFragment();
     }
 
     String[] products;
@@ -61,13 +65,27 @@ public class ProductFragment extends ListFragment {
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
 
-        //TODO: put Bundle to pass onto WebFragment
-
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), products, logo);
         setListAdapter(customListAdapter);
 
         return inflater.inflate(R.layout.fragment_list, container, false);
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
 
+        Bundle previousBundle = this.getArguments();
+        Bundle newBundle = new Bundle();
+        newBundle.putString("CompanyTitle", previousBundle.getString("CompanyTitle"));
+        newBundle.putString("ProductName", "" + products[position]);
+        newBundle.putInt("ProductIndex", position);
+
+        webFragment.setArguments(newBundle);
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.fragment_container, webFragment);
+        fragmentTransaction.commit();
+    }
 }
