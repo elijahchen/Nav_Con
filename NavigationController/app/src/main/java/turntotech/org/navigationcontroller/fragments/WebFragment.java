@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import turntotech.org.navigationcontroller.R;
@@ -43,7 +45,16 @@ public class WebFragment extends Fragment {
         WebView myWebView = (WebView) rootView.findViewById(R.id.webView);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.loadUrl(url);
+        myWebView.setWebViewClient(new browser());
+        myWebView.setWebChromeClient(new WebChromeClient());
         return rootView;
     }
 
+    private class browser extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
 }
