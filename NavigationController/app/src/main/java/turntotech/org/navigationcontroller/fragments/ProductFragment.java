@@ -1,5 +1,6 @@
 package turntotech.org.navigationcontroller.fragments;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -17,10 +18,10 @@ import turntotech.org.navigationcontroller.utilities.CustomListAdapter;
 
 public class ProductFragment extends ListFragment {
 
-    WebFragment webFragment;
+    Fragment webFragment;
 
     public ProductFragment() {
-        webFragment = new WebFragment();
+        webFragment = new Fragment();
     }
 
     String[] products;
@@ -78,7 +79,7 @@ public class ProductFragment extends ListFragment {
         Bundle previousBundle = this.getArguments();
         Bundle newBundle = new Bundle();
         newBundle.putString("CompanyTitle", previousBundle.getString("CompanyTitle"));
-        newBundle.putString("ProductName", "" + products[position]);
+        newBundle.putString("ProductName", products[position]);
         newBundle.putInt("ProductIndex", position);
 
         webFragment.setArguments(newBundle);
