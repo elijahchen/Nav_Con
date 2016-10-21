@@ -54,7 +54,7 @@ public class ProductFragment extends ListFragment {
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
         if (companyPosition == 1) {
-            products = new String[]{"Galaxy Note", "Galaxy S", "Galaxy Tab"};
+            products = new String[]{"Galaxy Note", "Galaxy S", "Galaxy Gear"};
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
         if (companyPosition == 2) {
@@ -62,7 +62,7 @@ public class ProductFragment extends ListFragment {
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
         if (companyPosition == 3) {
-            products = new String[]{"Honor", "MatePad", "Huawei Watch"};
+            products = new String[]{"Honor", "Mate", "Huawei Watch"};
             logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
         }
 
