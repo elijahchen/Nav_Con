@@ -21,7 +21,7 @@ public class ProductFragment extends ListFragment {
     Fragment webFragment;
 
     public ProductFragment() {
-        webFragment = new Fragment();
+        webFragment = new WebFragment();
     }
 
     String[] products;

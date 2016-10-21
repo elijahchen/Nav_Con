@@ -2,7 +2,7 @@ package turntotech.org.navigationcontroller.fragments;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -49,16 +49,16 @@ public class WebFragment extends Fragment {
         productSelection(companyIndex, productIndex);
         Log.i("URL", url);
 
-        View rootView = inflater.inflate(R.layout.activity_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_web, container, false);
         myWebView = (WebView) rootView.findViewById(R.id.webView);
-        myWebView.invalidate();
+        //myWebView.invalidate();
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         myWebView.loadUrl(url);
         myWebView.setWebViewClient(new browser());
 
-        return rootView.inflate(getContext(), R.layout.activity_main, container);
-//        return rootView;
+        //return rootView.inflate(getContext(), R.layout.activity_main, container);
+        return rootView;
     }
 
     public void productSelection(int companyIndex, int productIndex) {
