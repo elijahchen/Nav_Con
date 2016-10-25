@@ -24,12 +24,13 @@ public class WebFragment extends Fragment {
 
     String url = "http://www.gsmarena.com";
     WebView myWebView;
+    TextView title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mCustomView = inflater.inflate(R.layout.custom_actionbar, null);
-        TextView title = (TextView) mCustomView.findViewById(R.id.title_text);
+        title = (TextView) mCustomView.findViewById(R.id.title_text);
         mCustomView.findViewById(R.id.back_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,28 +42,29 @@ public class WebFragment extends Fragment {
         actionBar.setCustomView(mCustomView);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        Bundle bundle = this.getArguments();
-        int companyIndex = bundle.getInt("CompanyIndex");
-        int productIndex = bundle.getInt("ProductIndex");
-        title.setText(bundle.getString("ProductName"));
-
-        productSelection(companyIndex, productIndex);
-        Log.i("URL", url);
+        productSelection();
 
         View rootView = inflater.inflate(R.layout.fragment_web, container, false);
         myWebView = (WebView) rootView.findViewById(R.id.webView);
-        //myWebView.invalidate();
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         myWebView.loadUrl(url);
         myWebView.setWebViewClient(new browser());
 
-        //return rootView.inflate(getContext(), R.layout.activity_main, container);
         return rootView;
     }
 
-    public void productSelection(int companyIndex, int productIndex) {
-        switch (companyIndex * 10 + productIndex) {
+    public void productSelection() {
+        Bundle bundle = this.getArguments();
+        title.setText(bundle.getString("ProductName"));
+        int companyPosition = bundle.getInt("CompanyIndex");
+        int productIndex = bundle.getInt("ProductIndex");
+        title.setText(bundle.getString("ProductName"));
+        Log.i("companyIndex", "" + companyPosition);
+        Log.i("productIndex", "" + productIndex);
+        Log.i("c * 10 + p", "" + (companyPosition * 10 + productIndex));
+
+        switch ((companyPosition * 10) + productIndex) {
             //Apple
             case 0:
                 url = "http://www.gsmarena.com/apple_iphone_7-8064.php";

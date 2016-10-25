@@ -76,13 +76,11 @@ public class ProductFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Bundle previousBundle = this.getArguments();
-        Bundle newBundle = new Bundle();
-        newBundle.putString("CompanyTitle", previousBundle.getString("CompanyTitle"));
-        newBundle.putString("ProductName", products[position]);
-        newBundle.putInt("ProductIndex", position);
+        Bundle bundle = this.getArguments();
+        bundle.putString("ProductName", products[position]);
+        bundle.putInt("ProductIndex", position);
 
-        webFragment.setArguments(newBundle);
+        webFragment.setArguments(bundle);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
