@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import turntotech.org.navigationcontroller.R;
 
 /**
@@ -18,10 +21,10 @@ import turntotech.org.navigationcontroller.R;
 public class CustomListAdapter extends ArrayAdapter<String> {
 
     private final Context context;
-    private final String[] values;
-    private final int[] icons;
+    private final ArrayList<String> values;
+    private final ArrayList<Integer> icons;
 
-    public CustomListAdapter(Context context, String[] values, int[] icons) {
+    public CustomListAdapter(Context context, ArrayList<String> values, ArrayList<Integer> icons) {
         super(context, R.layout.item_company, values);
         this.context = context;
         this.values = values;
@@ -36,8 +39,8 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
         View rowView = inflater.inflate(R.layout.item_company, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.company_name);
-        textView.setText(values[position]);
-        Drawable draw = context.getResources().getDrawable(icons[position]);
+        textView.setText(values.get(position));
+        Drawable draw = context.getResources().getDrawable(icons.get(position));
 
         textView.setCompoundDrawablesWithIntrinsicBounds(draw, null, null, null);
 

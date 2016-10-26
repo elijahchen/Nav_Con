@@ -33,6 +33,8 @@ public class CompanyFragment extends ListFragment {
         View mCustomView = inflater.inflate(R.layout.custom_actionbar, null);
         TextView title = (TextView) mCustomView.findViewById(R.id.title_text);
         mCustomView.findViewById(R.id.back_text).setVisibility(View.INVISIBLE);
+        mCustomView.findViewById(R.id.addButton).setVisibility(View.INVISIBLE);
+        mCustomView.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setCustomView(mCustomView);

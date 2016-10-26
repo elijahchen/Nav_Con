@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 import turntotech.org.navigationcontroller.R;
 import turntotech.org.navigationcontroller.utilities.CustomListAdapter;
 
@@ -24,8 +29,28 @@ public class ProductFragment extends ListFragment {
         webFragment = new WebFragment();
     }
 
-    String[] products;
-    int[] logo;
+    //TODO: Make a method that changes the array into an arraylist
+
+    private String[] appleList = new String[]{"iPhone", "iPad", "Apple Watch"};
+    private int[] appleLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+
+    private String[] lglist = new String[]{"LG G", "LG G Pad", "LG Urbane"};
+    private int[] lgLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+
+    ArrayList<String> products;
+    ArrayList<Integer> logo;
+
+    public void deleteFromList() {
+        //TODO: Make a delete method for the arraylist
+    }
+
+    public void updateList() {
+
+    }
+
+    public void initialRun(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +67,6 @@ public class ProductFragment extends ListFragment {
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setCustomView(mCustomView);
-        actionBar.setDisplayShowCustomEnabled(true);
 
 
         Bundle bundle = this.getArguments();
@@ -50,20 +74,43 @@ public class ProductFragment extends ListFragment {
         title.setText(bundle.getString("CompanyTitle") + " Products");
 
         if (companyPosition == 0) {
-            products = new String[]{"iPhone", "iPad", "Apple Watch"};
-            logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+            products = new ArrayList<>();
+            products.add("iPhone");
+            products.add("iPad");
+            products.add("Apple Watch");
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
         }
+
         if (companyPosition == 1) {
-            products = new String[]{"Galaxy Note", "Galaxy S", "Galaxy Gear"};
-            logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+            products = new ArrayList<>();
+            products.add("Galaxy Note");
+            products.add("Galaxy S");
+            products.add("Galaxy Gear");
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
         }
+
         if (companyPosition == 2) {
-            products = new String[]{"LG G", "LG G Pad", "LG Urbane"};
-            logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+            products = new ArrayList<>();
+            products.add("LG G");
+            products.add("LG G Pad");
+            products.add("LG Urbane");
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
         }
+
         if (companyPosition == 3) {
-            products = new String[]{"Honor", "Mate", "Huawei Watch"};
-            logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+            products = new ArrayList<>();
+            products.add("Honor");
+            products.add("Mate");
+            products.add("Huawei Watch");
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
+            logo.add(R.drawable.apple_logo);
         }
 
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), products, logo);
@@ -77,7 +124,7 @@ public class ProductFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         Bundle bundle = this.getArguments();
-        bundle.putString("ProductName", products[position]);
+        bundle.putString("ProductName", products.get(position));
         bundle.putInt("ProductIndex", position);
 
         webFragment.setArguments(bundle);
@@ -87,4 +134,6 @@ public class ProductFragment extends ListFragment {
         fragmentTransaction.replace(R.id.fragment_container, webFragment);
         fragmentTransaction.commit();
     }
+
+
 }
