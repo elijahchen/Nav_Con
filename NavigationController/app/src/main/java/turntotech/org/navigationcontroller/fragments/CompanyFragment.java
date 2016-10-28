@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import turntotech.org.navigationcontroller.R;
 import turntotech.org.navigationcontroller.utilities.CustomListAdapter;
 
@@ -19,8 +21,8 @@ public class CompanyFragment extends ListFragment {
 
     ProductFragment productFragment;
 
-    String[] companies = new String[]{"Apple", "Samsung", "LG", "Huawei"};
-    int[] logo = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+    ArrayList<String> companies = new ArrayList<>();
+    ArrayList<Integer> logo = new ArrayList<>();
 
     public CompanyFragment() {
         productFragment = new ProductFragment();
@@ -29,6 +31,18 @@ public class CompanyFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        //TODO: BUGFIX- duplicate entries
+        companies.add("Apple");
+        companies.add("Samsung");
+        companies.add("LG");
+        companies.add("Huawei");
+
+        logo.add(R.drawable.apple_logo);
+        logo.add(R.drawable.apple_logo);
+        logo.add(R.drawable.apple_logo);
+        logo.add(R.drawable.apple_logo);
 
         View mCustomView = inflater.inflate(R.layout.custom_actionbar, null);
         TextView title = (TextView) mCustomView.findViewById(R.id.title_text);
@@ -53,7 +67,7 @@ public class CompanyFragment extends ListFragment {
 
         Bundle bundle = new Bundle();
         bundle.putInt("CompanyIndex", position);
-        bundle.putString("CompanyTitle", companies[position]);
+        bundle.putString("CompanyTitle", companies.get(position));
 
         productFragment.setArguments(bundle);
 

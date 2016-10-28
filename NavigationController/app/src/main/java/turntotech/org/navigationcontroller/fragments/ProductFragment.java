@@ -13,9 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 import turntotech.org.navigationcontroller.R;
 import turntotech.org.navigationcontroller.utilities.CustomListAdapter;
@@ -37,8 +34,8 @@ public class ProductFragment extends ListFragment {
     private String[] lglist = new String[]{"LG G", "LG G Pad", "LG Urbane"};
     private int[] lgLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
 
-    ArrayList<String> products;
-    ArrayList<Integer> logo;
+    ArrayList<String> products = new ArrayList<>();
+    ArrayList<Integer> logo = new ArrayList<>();
 
     public void deleteFromList() {
         //TODO: Make a delete method for the arraylist
@@ -67,7 +64,6 @@ public class ProductFragment extends ListFragment {
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setCustomView(mCustomView);
-
 
         Bundle bundle = this.getArguments();
         int companyPosition = bundle.getInt("CompanyIndex");
