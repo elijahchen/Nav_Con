@@ -32,16 +32,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
         android:background="@null"
-        android:src="@android:drawable/ic_input_add" />
-
-    <ImageButton
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
-        android:layout_marginEnd="10dp"
-        android:layout_alignTop="@+id/addButton"
-        android:layout_toStartOf="@+id/addButton" />
+        android:src="@android:drawable/ic_input_add"
+        android:visibility="invisible" />
 
 </RelativeLayout>

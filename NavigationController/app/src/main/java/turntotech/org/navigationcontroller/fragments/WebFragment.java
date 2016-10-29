@@ -38,9 +38,6 @@ public class WebFragment extends Fragment {
             }
         });
 
-        mCustomView.findViewById(R.id.deleteButton).setVisibility(View.INVISIBLE);
-        mCustomView.findViewById(R.id.addButton).setVisibility(View.INVISIBLE);
-
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setCustomView(mCustomView);
         actionBar.setDisplayShowCustomEnabled(true);
