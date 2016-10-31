@@ -6,7 +6,9 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -45,30 +47,7 @@ public class ProductFragment extends ListFragment {
 
     }
 
-    public void initialRun(){
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View mCustomView = inflater.inflate(R.layout.custom_actionbar, null);
-        TextView title = (TextView) mCustomView.findViewById(R.id.title_text);
-        mCustomView.findViewById(R.id.back_text).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager().popBackStack();
-            }
-        });
-
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setCustomView(mCustomView);
-
-        Bundle bundle = this.getArguments();
-        int companyPosition = bundle.getInt("CompanyIndex");
-        title.setText(bundle.getString("CompanyTitle") + " Products");
-
+    public void initialRun(int companyPosition){
         if (companyPosition == 0) {
             products = new ArrayList<>();
             products.add("iPhone");
@@ -108,6 +87,29 @@ public class ProductFragment extends ListFragment {
             logo.add(R.drawable.apple_logo);
             logo.add(R.drawable.apple_logo);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View mCustomView = inflater.inflate(R.layout.custom_actionbar, null);
+        TextView title = (TextView) mCustomView.findViewById(R.id.title_text);
+        mCustomView.findViewById(R.id.back_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setCustomView(mCustomView);
+
+        Bundle bundle = this.getArguments();
+        int companyPosition = bundle.getInt("CompanyIndex");
+        title.setText(bundle.getString("CompanyTitle") + " Products");
+
+        initialRun(companyPosition);
 
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), products, logo);
         setListAdapter(customListAdapter);
@@ -129,6 +131,21 @@ public class ProductFragment extends ListFragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_container, webFragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getTitle().toString()){
+            case "Add Product":
+                Log.i("Menu position 0", "Adding Product");
+                break;
+            case "Select Product":
+                Log.i("Menu position 1", "Selecting Product");
+                break;
+        }
+
+        return true;
     }
 
 
