@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import turntotech.org.navigationcontroller.R;
 import turntotech.org.navigationcontroller.utilities.CustomListAdapter;
@@ -28,64 +29,143 @@ public class ProductFragment extends ListFragment {
         webFragment = new WebFragment();
     }
 
-    //TODO: Make a method that changes the array into an arraylist
-
     private String[] appleList = new String[]{"iPhone", "iPad", "Apple Watch"};
     private int[] appleLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
+
+    private String[] samsungList = new String[]{"Galaxy Note", "Galaxy S", "Gear S"};
+    private int[] samsungLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
 
     private String[] lglist = new String[]{"LG G", "LG G Pad", "LG Urbane"};
     private int[] lgLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
 
-    ArrayList<String> products = new ArrayList<>();
-    ArrayList<Integer> logo = new ArrayList<>();
+    private String[] huaweiList = new String[]{"Honor", "Mate", "Huawei Watch"};
+    private int[] huaweiLogoList = new int[]{R.drawable.apple_logo, R.drawable.apple_logo, R.drawable.apple_logo};
 
-    public void deleteFromList() {
-        //TODO: Make a delete method for the arraylist
+    ArrayList<String> products;
+    ArrayList<Integer> logo;
+
+    Bundle bundle;
+
+    public void deleteFromList(int deleteFromPosition, int companyIndex) {
+        updateList(companyInQuestion(bundle.getInt("CompanyIndex")),
+                companyLogoInQuestion(bundle.getInt("CompanyIndex")),
+                bundle.getInt("CompanyIndex"),
+                deleteFromPosition,
+                companyInQuestion(bundle.getInt("CompanyIndex")).length - 1);
     }
 
-    public void updateList() {
-
+    public String[] companyInQuestion(int position){
+        switch(position){
+            case 0:
+                return appleList;
+            case 1:
+                return samsungList;
+            case 2:
+                return lglist;
+            case 3:
+                return huaweiList;
+        }
+        return null;
     }
 
-    public void initialRun(int companyPosition){
+    public int[] companyLogoInQuestion(int position){
+        switch(position){
+            case 0:
+                return appleLogoList;
+            case 1:
+                return samsungLogoList;
+            case 2:
+                return lgLogoList;
+            case 3:
+                return huaweiLogoList;
+        }
+        return null;
+    }
+
+    public void updateList(String[] company, int[] companyLogo, int companyIndex, int changeFromPosition, int newLength) {
+
+        int newLengthOfArray = 0;
+        if (company.length < newLength) {
+            newLengthOfArray -= 1;
+        } else {
+            newLengthOfArray += 1;
+        }
+
+        String[] tempList = new String[newLengthOfArray];
+        int[] tempLogoList = new int[newLengthOfArray];
+
+        for (int i = 0; i < company.length; i++) {
+            int counter = 0;
+            if (i == changeFromPosition && company.length > newLength) {
+                counter++;
+            }
+            tempList[i] = company[i + counter];
+            tempLogoList[i] = companyLogo[i + counter];
+        }
+
+        switch (companyIndex) {
+            case 0:
+                appleList = tempList;
+                appleLogoList = tempLogoList;
+                break;
+            case 1:
+                samsungList = tempList;
+                samsungLogoList = tempLogoList;
+                break;
+            case 2:
+                lglist = tempList;
+                lgLogoList = tempLogoList;
+                break;
+            case 3:
+                huaweiList = tempList;
+                huaweiLogoList = tempLogoList;
+                break;
+        }
+    }
+
+    public void onRun(int companyPosition) {
         if (companyPosition == 0) {
             products = new ArrayList<>();
-            products.add("iPhone");
-            products.add("iPad");
-            products.add("Apple Watch");
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
+            logo = new ArrayList<>();
+
+            Collections.addAll(products, appleList);
+
+            for (int i = 0; i < appleList.length; i++) {
+                logo.add(appleLogoList[i]);
+            }
         }
 
         if (companyPosition == 1) {
             products = new ArrayList<>();
-            products.add("Galaxy Note");
-            products.add("Galaxy S");
-            products.add("Galaxy Gear");
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
+            logo = new ArrayList<>();
+
+            Collections.addAll(products, samsungList);
+
+            for (int i = 0; i < samsungLogoList.length; i++) {
+                logo.add(samsungLogoList[i]);
+            }
         }
 
         if (companyPosition == 2) {
             products = new ArrayList<>();
-            products.add("LG G");
-            products.add("LG G Pad");
-            products.add("LG Urbane");
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
+            logo = new ArrayList<>();
+
+            Collections.addAll(products, lglist);
+
+            for (int i = 0; i < lgLogoList.length; i++) {
+                logo.add(lgLogoList[i]);
+            }
         }
 
         if (companyPosition == 3) {
             products = new ArrayList<>();
-            products.add("Honor");
-            products.add("Mate");
-            products.add("Huawei Watch");
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
-            logo.add(R.drawable.apple_logo);
+            logo = new ArrayList<>();
+
+            Collections.addAll(products, huaweiList);
+
+            for (int i = 0; i < huaweiLogoList.length; i++) {
+                logo.add(huaweiLogoList[i]);
+            }
         }
     }
 
@@ -105,11 +185,11 @@ public class ProductFragment extends ListFragment {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setCustomView(mCustomView);
 
-        Bundle bundle = this.getArguments();
+        bundle = this.getArguments();
         int companyPosition = bundle.getInt("CompanyIndex");
         title.setText(bundle.getString("CompanyTitle") + " Products");
 
-        initialRun(companyPosition);
+        onRun(companyPosition);
 
         CustomListAdapter customListAdapter = new CustomListAdapter(getActivity(), products, logo);
         setListAdapter(customListAdapter);
@@ -136,7 +216,7 @@ public class ProductFragment extends ListFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getTitle().toString()){
+        switch (item.getTitle().toString()) {
             case "Add Product":
                 Log.i("Menu position 0", "Adding Product");
                 break;
